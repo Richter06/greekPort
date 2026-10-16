@@ -1,4 +1,3 @@
-
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -24,16 +23,12 @@ export default function StorySequence() {
     const heroScroll = root.querySelector('.hero__scroll')
     const manifesto = root.querySelector('#manifesto')
 
-    if (!hero || !manifesto) return
-
-    // Movimento reduzido: todo o conteúdo fica disponível.
-    if (reducedMotion) return
+    if (!hero || !manifesto || reducedMotion) return
 
     /*
-     * TIMELINE 1 — HERO
-     *
-     * A saída do Hero depende somente da altura do próprio Hero.
-     * Não fica mais presa à duração total do manifesto.
+     * HERO
+     * A saída continua acompanhando o scroll para preservar
+     * a transição cinematográfica já existente.
      */
     const heroTimeline = gsap.timeline({
       scrollTrigger: {
@@ -69,11 +64,11 @@ export default function StorySequence() {
     }
 
     /*
-     * TIMELINE 2 — MANIFESTO
-     *
-     * Começa quando o manifesto está entrando na tela.
-     * O conteúdo aparece na primeira parte da seção e
-     * permanece visível durante a parte final da leitura.
+     * MANIFESTO
+     * Diferente da versão anterior, esta timeline NÃO usa scrub.
+     * Ao entrar na área visível, a sequência começa e termina
+     * mesmo que a pessoa pare de rolar. O texto fica disponível
+     * durante a leitura e só reverte ao voltar acima da seção.
      */
     const header = manifesto.querySelector('.manifesto__header')
     const overline = manifesto.querySelector('.manifesto__overline')
@@ -83,119 +78,74 @@ export default function StorySequence() {
     const footerItems = Array.from(
       manifesto.querySelectorAll('.manifesto__footer > *'),
     )
-    const bottomLine = manifesto.querySelector(
-      '.manifesto__bottom-line',
-    )
+    const bottomLine = manifesto.querySelector('.manifesto__bottom-line')
 
     const manifestoTimeline = gsap.timeline({
+      defaults: {
+        ease: 'power2.out',
+      },
       scrollTrigger: {
         trigger: manifesto,
-        start: 'top 90%',
-        end: 'bottom 65%',
-        scrub: 0.7,
+        start: 'top 82%',
+        toggleActions: 'play none none reverse',
         invalidateOnRefresh: true,
       },
     })
 
-    // Cabeçalho editorial.
     if (header) {
       manifestoTimeline.fromTo(
         header,
-        {
-          autoAlpha: 0,
-          y: 14,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.35,
-        },
+        { autoAlpha: 0, y: 14 },
+        { autoAlpha: 1, y: 0, duration: 0.45 },
         0,
       )
     }
 
-    // Chamada pequena antes da mensagem principal.
     if (overline) {
       manifestoTimeline.fromTo(
         overline,
-        {
-          autoAlpha: 0,
-          y: 16,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.35,
-        },
-        0.28,
+        { autoAlpha: 0, y: 16 },
+        { autoAlpha: 1, y: 0, duration: 0.45 },
+        0.18,
       )
     }
 
-    // Título em etapas, sem revelar tudo de uma vez.
     if (titleLines.length) {
       manifestoTimeline.fromTo(
         titleLines,
-        {
-          autoAlpha: 0,
-          y: 28,
-        },
+        { autoAlpha: 0, y: 28 },
         {
           autoAlpha: 1,
           y: 0,
           duration: 0.55,
-          stagger: 0.18,
+          stagger: 0.13,
         },
-        0.52,
+        0.38,
       )
     }
 
-    // Mensagem, descrição e chamada para os projetos.
     if (footerItems.length) {
       manifestoTimeline.fromTo(
         footerItems,
-        {
-          autoAlpha: 0,
-          y: 18,
-        },
+        { autoAlpha: 0, y: 18 },
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.4,
-          stagger: 0.12,
+          duration: 0.45,
+          stagger: 0.1,
         },
-        1.55,
+        1.05,
       )
     }
 
-    // Assinatura fecha a composição.
     if (bottomLine) {
       manifestoTimeline.fromTo(
         bottomLine,
-        {
-          autoAlpha: 0,
-          y: 12,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.3,
-        },
-        2.15,
+        { autoAlpha: 0, y: 12 },
+        { autoAlpha: 1, y: 0, duration: 0.4 },
+        1.65,
       )
     }
-
-    /*
-     * O fim da timeline fica vazio de propósito:
-     * o usuário continua rolando, mas o manifesto
-     * permanece completamente visível para leitura.
-     */
-    manifestoTimeline.to(
-      {},
-      {
-        duration: 1.8,
-      },
-      2.5,
-    )
 
     return () => {
       heroTimeline.scrollTrigger?.kill()
