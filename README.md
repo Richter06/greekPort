@@ -1,16 +1,24 @@
-# React + Vite
+# GreekPort — Richard Araújo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfólio pessoal com direção de arte inspirada em escultura clássica, mármore e desenho editorial. O busto 3D é a peça central de uma narrativa guiada pelo scroll.
 
-Currently, two official plugins are available:
+## Stack
+- React + Vite
+- Three.js, React Three Fiber e Drei para o modelo GLB
+- GSAP + ScrollTrigger para movimento ligado ao scroll
+- Motion for React para progresso de leitura
+- CSS modular: cada componente tem sua própria folha de estilos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Desenvolvimento
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+## Build e lint
+```bash
+npm run build
+npm run lint
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Os projetos exibidos são placeholders visuais, preparados para serem substituídos por trabalhos reais, descrições, links e capturas de tela.

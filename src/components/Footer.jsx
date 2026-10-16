@@ -1,0 +1,3 @@
+import {ArrowUp} from 'lucide-react'
+import './Footer.css'
+export default function Footer(){return <footer className="footer"><a className="footer__brand" href="#hero">Ρ <span>RICHARD ARAÚJO</span></a><span className="footer__note">FEITO COM CURIOSIDADE E CUIDADO.</span><a className="footer__top" href="#hero">VOLTAR AO TOPO <ArrowUp size={13}/></a><span className="footer__year">© {new Date().getFullYear()}</span></footer>}
