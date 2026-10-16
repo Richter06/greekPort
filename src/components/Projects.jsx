@@ -59,7 +59,9 @@ export default function Projects() {
             <article className={`project-card project-card--${project.theme}`} key={project.name}>
               <div className="project-card__visual" aria-hidden="true">
                 <div className="project-card__frame">
-                  <div className="project-card__symbol"><span>{project.name === 'Sprint' ? 'S' : project.name === 'AeroOS' ? 'A' : 'D'}</span><i /><i /></div>
+                  <span className="project-card__label">{project.visualLabel}</span>
+                  <span className="project-card__caption">{project.visualCaption}</span>
+                  <div className="project-card__symbol" />
                 </div>
               </div>
               <div className="project-card__meta">
