@@ -1,13 +1,12 @@
 # GreekPort — Richard Araújo
 
-Portfólio pessoal com direção de arte inspirada em escultura clássica, mármore e desenho editorial. O busto 3D é a peça central de uma narrativa guiada pelo scroll.
+Portfólio pessoal com direção de arte inspirada em escultura clássica, materiais naturais e desenho editorial. O busto 3D permanece como peça central, enquanto tipografia, espaço e conteúdo conduzem a navegação.
 
 ## Stack
 - React + Vite
 - Three.js, React Three Fiber e Drei para o modelo GLB
-- GSAP + ScrollTrigger para movimento ligado ao scroll
-- Motion for React para progresso de leitura
-- CSS modular: cada componente tem sua própria folha de estilos
+- GSAP + ScrollTrigger para animações discretas ligadas ao scroll
+- CSS modular por componente, com tokens e ajustes globais de direção visual
 
 ## Desenvolvimento
 ```bash
@@ -21,4 +20,4 @@ npm run build
 npm run lint
 ```
 
-Os projetos exibidos são placeholders visuais, preparados para serem substituídos por trabalhos reais, descrições, links e capturas de tela.
+O acervo apresenta projetos pessoais em desenvolvimento. As descrições são curtas de propósito; cada projeto pode ganhar um estudo de caso próprio conforme estiver pronto.
