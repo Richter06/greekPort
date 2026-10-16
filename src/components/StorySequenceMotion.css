@@ -1,22 +1,20 @@
-
 /*
  * STORY SEQUENCE — RITMO E ESPAÇO DE LEITURA
  *
  * Este arquivo é importado depois de StorySequence.css.
- * As regras abaixo ajustam o ritmo sem substituir o
- * cenário compartilhado nem interferir no busto.
+ * O cenário compartilhado e o busto permanecem intactos.
  */
 
-/* Desktop: manifesto com espaço para respirar. */
+/* Desktop: percurso longo para revelar e ler o manifesto com calma. */
 .story-sequence > .manifesto {
-  min-height: 190svh;
+  min-height: 220svh;
   box-sizing: border-box;
   justify-content: flex-start;
   padding-top: clamp(100px, 13vh, 160px);
   padding-bottom: clamp(130px, 18vh, 220px);
 }
 
-/* Dá mais espaço entre o título e a mensagem inferior. */
+/* Espaço editorial entre título, mensagem e assinatura. */
 .story-sequence .manifesto__composition {
   padding-top: clamp(55px, 8vh, 100px);
 }
@@ -29,10 +27,10 @@
   margin-top: clamp(70px, 11vh, 130px);
 }
 
-/* Tablet: mantém o percurso longo, sem exagerar na altura. */
+/* Tablet: conserva espaço sem exagerar na extensão da página. */
 @media (max-width: 800px) {
   .story-sequence > .manifesto {
-    min-height: 175svh;
+    min-height: 180svh;
     padding-top: 100px;
     padding-bottom: 130px;
   }
@@ -50,13 +48,10 @@
   }
 }
 
-/*
- * Celular: o conteúdo ocupa mais linhas, então a altura
- * deve vir principalmente do próprio conteúdo e dos espaços.
- */
+/* Celular: conteúdo empilhado, com espaço adicional para leitura. */
 @media (max-width: 700px) {
   .story-sequence > .manifesto {
-    min-height: 0;
+    min-height: 145svh;
     padding-top: 85px;
     padding-bottom: 110px;
   }
