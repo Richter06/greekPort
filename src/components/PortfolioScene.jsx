@@ -64,7 +64,8 @@ export default function PortfolioScene() {
       durations.slice(0, index).reduce((total, duration) => total + duration, 0),
     )
 
-    const [heroDuration, manifestoDuration, projectsDuration] = durations
+    const heroDuration = durations[0]
+    const projectsDuration = durations[2]
     const projectsStart = starts[2]
     const aboutStart = starts[3]
     const contactStart = starts[4]
@@ -91,14 +92,15 @@ export default function PortfolioScene() {
         duration: heroDuration,
       }, 0)
       /*
-       * O papel termina de entrar exatamente no fim do Hero.
-       * Antes, a animação continuava por 62% do Manifesto:
-       * o texto escuro aparecia sobre o cenário escuro.
+       * O papel termina de entrar no fim do Hero, depois que o
+       * conteúdo principal já começou a desaparecer. Antes, a
+       * transição avançava por 62% do Manifesto e deixava o texto
+       * escuro sobre o cenário escuro durante boa parte da leitura.
        */
       .to(paper, {
         opacity: 0.97,
-        duration: heroDuration * 0.54,
-      }, heroDuration * 0.46)
+        duration: heroDuration * 0.32,
+      }, heroDuration * 0.68)
       .to(paper, {
         opacity: 0,
         duration: projectsDuration * 0.3,
