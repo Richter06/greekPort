@@ -1,4 +1,80 @@
-/* Alternativa estática e legível para quem reduz movimento. */
+
+/*
+ * STORY SEQUENCE — RITMO E ESPAÇO DE LEITURA
+ *
+ * Este arquivo é importado depois de StorySequence.css.
+ * As regras abaixo ajustam o ritmo sem substituir o
+ * cenário compartilhado nem interferir no busto.
+ */
+
+/* Desktop: manifesto com espaço para respirar. */
+.story-sequence > .manifesto {
+  min-height: 190svh;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  padding-top: clamp(100px, 13vh, 160px);
+  padding-bottom: clamp(130px, 18vh, 220px);
+}
+
+/* Dá mais espaço entre o título e a mensagem inferior. */
+.story-sequence .manifesto__composition {
+  padding-top: clamp(55px, 8vh, 100px);
+}
+
+.story-sequence .manifesto__title-wrap {
+  padding-bottom: clamp(55px, 9vh, 110px);
+}
+
+.story-sequence .manifesto__bottom-line {
+  margin-top: clamp(70px, 11vh, 130px);
+}
+
+/* Tablet: mantém o percurso longo, sem exagerar na altura. */
+@media (max-width: 800px) {
+  .story-sequence > .manifesto {
+    min-height: 175svh;
+    padding-top: 100px;
+    padding-bottom: 130px;
+  }
+
+  .story-sequence .manifesto__composition {
+    padding-top: 65px;
+  }
+
+  .story-sequence .manifesto__title-wrap {
+    padding-bottom: 65px;
+  }
+
+  .story-sequence .manifesto__bottom-line {
+    margin-top: 80px;
+  }
+}
+
+/*
+ * Celular: o conteúdo ocupa mais linhas, então a altura
+ * deve vir principalmente do próprio conteúdo e dos espaços.
+ */
+@media (max-width: 700px) {
+  .story-sequence > .manifesto {
+    min-height: 0;
+    padding-top: 85px;
+    padding-bottom: 110px;
+  }
+
+  .story-sequence .manifesto__composition {
+    padding-top: 55px;
+  }
+
+  .story-sequence .manifesto__title-wrap {
+    padding-bottom: 45px;
+  }
+
+  .story-sequence .manifesto__bottom-line {
+    margin-top: 65px;
+  }
+}
+
+/* Acessibilidade: conteúdo legível sem depender da animação. */
 @media (prefers-reduced-motion: reduce) {
   .story-sequence__paper {
     opacity: 0 !important;
@@ -9,7 +85,19 @@
   }
 
   .story-sequence > .manifesto {
+    min-height: 0;
     background: var(--paper, #f1e8d6);
+  }
+
+  .story-sequence .manifesto__header,
+  .story-sequence .manifesto__overline,
+  .story-sequence .manifesto__title-line,
+  .story-sequence .manifesto__footer > *,
+  .story-sequence .manifesto__bottom-line {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    will-change: auto;
   }
 
   .story-sequence__visual .bust-scene {
