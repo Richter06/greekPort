@@ -7,7 +7,21 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import './App.css'
+import './Editorial.css'
 
 export default function App() {
-  return <><ProgressBar /><Navigation /><main><Hero /><Manifesto /><Projects /><About /><Contact /></main><Footer /></>
+  return (
+    <>
+      <ProgressBar />
+      <Navigation />
+      <main>
+        <Hero />
+        <Manifesto />
+        <Projects />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  )
 }
