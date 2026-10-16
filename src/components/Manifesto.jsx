@@ -1,7 +1,40 @@
-import {useRef} from 'react'
-import {useGSAP} from '@gsap/react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './Manifesto.css'
-gsap.registerPlugin(ScrollTrigger,useGSAP)
-export default function Manifesto(){const ref=useRef(null);useGSAP(()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;gsap.fromTo('.manifesto__reveal',{opacity:0,y:24},{opacity:1,y:0,duration:.85,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:ref.current,start:'top 72%'}});gsap.fromTo('.manifesto__rule',{scaleX:0},{scaleX:1,transformOrigin:'left center',duration:1,ease:'power2.out',scrollTrigger:{trigger:ref.current,start:'top 70%'}})},{scope:ref});return <section className="manifesto section-shell" id="manifesto" ref={ref}><div className="manifesto__top"><p className="section-kicker manifesto__reveal">01 / O MANIFESTO</p><span className="manifesto__folio">PRINCIPIA · I</span></div><div className="manifesto__body"><div className="manifesto__index manifesto__reveal"><span>01</span><i/><span>03</span></div><div className="manifesto__copy"><h2 className="section-heading manifesto__reveal">A forma atrai.<br/>A <em>intenção</em> permanece.</h2><div className="manifesto__bottom"><span className="manifesto__rule"/><p className="manifesto__statement manifesto__reveal">Acredito que uma boa experiência digital nasce quando estética e funcionalidade deixam de competir e passam a trabalhar juntas.</p><p className="manifesto__detail manifesto__reveal">Cada detalhe tem um motivo. Cada interação, uma função. Cada projeto, uma identidade.</p></div></div></div><div className="manifesto__footer"><span className="manifesto__rule"/><span>ARS ET SCIENTIA</span><span>BELO, ÚTIL, INTENCIONAL.</span></div></section>}
+
+gsap.registerPlugin(ScrollTrigger, useGSAP)
+
+export default function Manifesto() {
+  const ref = useRef(null)
+
+  useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    gsap.fromTo('.manifesto__reveal', { opacity: 0, y: 18 }, {
+      opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out',
+      scrollTrigger: { trigger: ref.current, start: 'top 78%' },
+    })
+  }, { scope: ref })
+
+  return (
+    <section className="manifesto section-shell" id="manifesto" ref={ref}>
+      <div className="manifesto__top">
+        <p className="section-kicker manifesto__reveal">Uma ideia simples</p>
+      </div>
+      <div className="manifesto__body">
+        <div className="manifesto__copy">
+          <h2 className="section-heading manifesto__reveal">A estética chama.<br />A <em>experiência</em> fica.</h2>
+          <div className="manifesto__bottom">
+            <p className="manifesto__statement manifesto__reveal">
+              Um bom site não precisa escolher entre beleza e funcionalidade.
+            </p>
+            <p className="manifesto__detail manifesto__reveal">
+              Meu objetivo é unir clareza, personalidade e cuidado técnico para que cada escolha visual também tenha uma razão de existir.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
