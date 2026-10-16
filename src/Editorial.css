@@ -175,3 +175,35 @@ a:focus-visible, button:focus-visible { outline-color: var(--olive); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* A lista de trabalhos prioriza nomes e descrições reais, não thumbnails decorativas. */
+.projects__grid { display: flex; flex-direction: column; gap: 0; }
+.project-card,
+.project-card:nth-child(2),
+.project-card:nth-child(3) {
+  display: grid;
+  grid-template-columns: minmax(220px, .85fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(24px, 6vw, 84px);
+  margin: 0;
+  padding: 28px 0 34px;
+  border-top: 1px solid var(--line);
+}
+.project-card__visual { display: none !important; }
+.project-card__meta { padding: 0; }
+.project-card__category { display: block; margin-bottom: 8px; }
+.project-card__meta h3 { margin: 0; font-size: clamp(2.2rem, 4.3vw, 4rem); }
+.project-card__meta p { max-width: 420px; margin-top: 4px; font-size: 13px; }
+.projects__footer { display: none; }
+.footer__brand span:first-child { color: #c5b58f; font: 22px/1 var(--display); }
+.footer__brand span:last-child { color: var(--paper); font: 10px var(--body); letter-spacing: .025em; }
+@media (max-width: 700px) {
+  .project-card,
+  .project-card:nth-child(2),
+  .project-card:nth-child(3) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 23px 0 27px;
+  }
+  .project-card__meta h3 { font-size: 2.5rem; }
+}
