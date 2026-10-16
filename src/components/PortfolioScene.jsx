@@ -90,9 +90,14 @@ export default function PortfolioScene() {
         opacity: 1,
         duration: heroDuration,
       }, 0)
+      /*
+       * O papel termina de entrar exatamente no fim do Hero.
+       * Antes, a animação continuava por 62% do Manifesto:
+       * o texto escuro aparecia sobre o cenário escuro.
+       */
       .to(paper, {
         opacity: 0.97,
-        duration: heroDuration * 0.54 + manifestoDuration * 0.62,
+        duration: heroDuration * 0.54,
       }, heroDuration * 0.46)
       .to(paper, {
         opacity: 0,
