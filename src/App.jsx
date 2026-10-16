@@ -1,20 +1,19 @@
 import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import Manifesto from './components/Manifesto'
+import StorySequence from './components/StorySequence'
 import Projects from './components/Projects'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import './App.css'
 import './Editorial.css'
+import './components/StorySequence.css'
 
 export default function App() {
   return (
     <>
       <Navigation />
       <main>
-        <Hero />
-        <Manifesto />
+        <StorySequence />
         <Projects />
         <About />
         <Contact />

@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import BustScene from './BustScene'
 import './Hero.css'
 
 gsap.registerPlugin(useGSAP)
@@ -36,8 +35,6 @@ export default function Hero() {
   return (
     <section className="hero" id="hero" ref={ref}>
       <div className="hero__stage">
-        <BustScene />
-
         <div className="hero__content">
           <div className="hero__eyebrow hero__reveal">
             <span className="hero__eyebrow-mark" aria-hidden="true" />

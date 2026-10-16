@@ -43,28 +43,49 @@ function BustModel() {
 
   useGSAP(() => {
     if (
+      !floatRef.current ||
       !rotationRef.current ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
       return
     }
 
-    gsap.fromTo(
-      rotationRef.current.rotation,
-      { y: -0.16, x: 0.025 },
-      {
-        y: 0.42,
-        x: -0.025,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#hero',
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#story-sequence',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.8,
+        invalidateOnRefresh: true,
       },
-    )
+    })
+
+    timeline
+      .fromTo(
+        rotationRef.current.rotation,
+        { y: -0.16, x: 0.025 },
+        { y: 0.5, x: -0.025, duration: 1.8, ease: 'none' },
+        0,
+      )
+      .to(
+        floatRef.current.position,
+        {
+          x: () => window.innerWidth <= 700 ? 0.04 : 0.2,
+          duration: 1.3,
+          ease: 'none',
+        },
+        0.32,
+      )
+      .to(
+        floatRef.current.scale,
+        { x: 0.94, y: 0.94, z: 0.94, duration: 1.25, ease: 'none' },
+        0.48,
+      )
+
+    return () => {
+      timeline.scrollTrigger?.kill()
+      timeline.kill()
+    }
   }, { dependencies: [fitted], revertOnUpdate: true })
 
   return (
@@ -81,17 +102,14 @@ function BustModel() {
 function Lighting() {
   return (
     <>
-      {/* Iluminação ambiente quente */}
       <ambientLight intensity={0.48} color="#fff5df" />
 
-      {/* Luz principal frontal */}
       <directionalLight
         position={[-4, 5, 5]}
         intensity={2.1}
         color="#fff0d0"
       />
 
-      {/* Recorte dourado dramático por trás */}
       <spotLight
         position={[3.5, 4.5, -2.5]}
         target-position={[0, 0.4, 0]}
@@ -103,7 +121,6 @@ function Lighting() {
         color="#ffc44f"
       />
 
-      {/* Reflexo âmbar lateral */}
       <pointLight
         position={[-3, 0.3, -1.5]}
         intensity={5}
@@ -112,7 +129,6 @@ function Lighting() {
         decay={2}
       />
 
-      {/* Preenchimento frontal suave */}
       <pointLight
         position={[0, 0.5, 3.5]}
         intensity={0.7}
@@ -121,7 +137,6 @@ function Lighting() {
         decay={2}
       />
 
-      {/* Destaque dourado vindo de cima */}
       <spotLight
         position={[-1, 5, 1]}
         target-position={[0, 0.5, 0]}
