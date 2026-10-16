@@ -12,18 +12,24 @@ const projects = [
     category: 'E-commerce · React',
     description: 'Uma experiência de loja de tênis construída em torno do produto, com uma direção visual minimalista.',
     theme: 'architecture',
+    visualLabel: 'Forma e função',
+    visualCaption: 'Uma loja feita para explorar',
   },
   {
     name: 'D20 Burguer',
     category: 'Landing page · Web design',
     description: 'Uma identidade digital inspirada em RPG, onde o universo da marca orienta a experiência.',
     theme: 'object',
+    visualLabel: 'Identidade e apetite',
+    visualCaption: 'Uma marca com universo próprio',
   },
   {
     name: 'AeroOS',
     category: 'Interface · React',
     description: 'Uma exploração de interface inspirada na estética Frutiger Aero, com transparências e referências à natureza.',
     theme: 'editorial',
+    visualLabel: 'Interface e atmosfera',
+    visualCaption: 'Um sistema inspirado na natureza',
   },
 ]
 
