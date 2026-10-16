@@ -1,5 +1,4 @@
 import Navigation from './components/Navigation'
-import ProgressBar from './components/ProgressBar'
 import Hero from './components/Hero'
 import Manifesto from './components/Manifesto'
 import Projects from './components/Projects'
@@ -12,7 +11,6 @@ import './Editorial.css'
 export default function App() {
   return (
     <>
-      <ProgressBar />
       <Navigation />
       <main>
         <Hero />
