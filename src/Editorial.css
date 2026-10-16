@@ -24,16 +24,8 @@ main { overflow: clip; }
 .section-heading em { color: var(--terracotta); }
 a { text-underline-offset: 4px; }
 
-/* Manifesto: large typographic statement with one architectural detail. */
-.manifesto { padding-top: clamp(105px, 14vw, 180px); padding-bottom: clamp(100px, 12vw, 155px); }
-.manifesto__top { justify-content: flex-start; }
-.manifesto__folio, .manifesto__index, .manifesto__footer { display: none !important; }
-.manifesto__body { display: block; margin-top: clamp(38px, 6vw, 72px); }
-.manifesto__copy .section-heading { max-width: 1000px; margin-top: 0; font-size: clamp(3.7rem, 8vw, 8rem); }
-.manifesto__bottom { grid-template-columns: minmax(0, 1fr) minmax(240px, .75fr); gap: clamp(30px, 8vw, 120px); margin-top: clamp(36px, 5vw, 65px); }
-.manifesto__rule { display: none; }
-.manifesto__statement { margin: 0; color: var(--terracotta); font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.1; }
-.manifesto__detail { margin: 0; color: #55564f; font-size: 14px; line-height: 1.9; }
+/* O Manifesto tem estilos próprios em src/components/Manifesto.css.
+   A transição do fundo de papel é controlada por PortfolioScene.jsx. */
 
 /* Projects: expressive panels inspired by pottery, carved stone and architecture. */
 .projects { padding-block: clamp(95px, 12vw, 160px); background: var(--terracotta); color: var(--paper-light); }
