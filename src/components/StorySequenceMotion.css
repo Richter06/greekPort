@@ -1,0 +1,18 @@
+/* Alternativa estática e legível para quem reduz movimento. */
+@media (prefers-reduced-motion: reduce) {
+  .story-sequence__paper {
+    opacity: 0 !important;
+  }
+
+  .story-sequence > .hero {
+    background: #171512;
+  }
+
+  .story-sequence > .manifesto {
+    background: var(--paper, #f1e8d6);
+  }
+
+  .story-sequence__visual .bust-scene {
+    will-change: auto;
+  }
+}

@@ -14,6 +14,10 @@ function BustModel() {
   const floatRef = useRef(null)
   const rotationRef = useRef(null)
   const { scene } = useGLTF(modelUrl)
+  const prefersReducedMotion = useMemo(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    [],
+  )
 
   const fitted = useMemo(() => {
     const object = scene.clone(true)
@@ -35,7 +39,7 @@ function BustModel() {
   }, [scene])
 
   useFrame(({ clock }) => {
-    if (floatRef.current) {
+    if (floatRef.current && !prefersReducedMotion) {
       floatRef.current.position.y =
         Math.sin(clock.elapsedTime * 0.55) * 0.018
     }
@@ -45,7 +49,7 @@ function BustModel() {
     if (
       !floatRef.current ||
       !rotationRef.current ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      prefersReducedMotion
     ) {
       return
     }
@@ -86,7 +90,7 @@ function BustModel() {
       timeline.scrollTrigger?.kill()
       timeline.kill()
     }
-  }, { dependencies: [fitted], revertOnUpdate: true })
+  }, { dependencies: [fitted, prefersReducedMotion], revertOnUpdate: true })
 
   return (
     <group ref={floatRef}>

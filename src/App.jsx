@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import './App.css'
 import './Editorial.css'
 import './components/StorySequence.css'
+import './components/StorySequenceMotion.css'
 
 export default function App() {
   return (
