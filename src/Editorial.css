@@ -138,8 +138,7 @@ a { text-underline-offset: 4px; }
 @media(max-width:700px) {
   .section-shell { padding-inline: 24px; }
   .section-heading { font-size: clamp(3.2rem, 13vw, 5.3rem); }
-  .nav { padding-inline: 24px; }
-  .hero__stage { min-height: 650px; }
+
   .manifesto__bottom { margin-top: 30px; }
   .projects__grid { grid-template-columns: 1fr; gap: 42px; }
   .project-card:nth-child(2) { margin-top: 0; }
