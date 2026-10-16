@@ -60,7 +60,6 @@ function Lighting() {
       />
       <spotLight
         position={[2.8, 4.5, -3]}
-        target-position={[0, 0.5, 0]}
         intensity={5.5}
         angle={0.62}
         penumbra={0.78}
