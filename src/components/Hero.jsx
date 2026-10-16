@@ -24,10 +24,10 @@ export default function Hero() {
       <div className="hero__stage">
         <BustScene />
         <div className="hero__content">
-          <p className="hero__eyebrow hero__reveal">Desenvolvedor web independente</p>
-          <h1 className="hero__title hero__reveal">Interfaces com<br /><em>intenção.</em></h1>
+          <p className="hero__eyebrow hero__reveal">Desenvolvimento web · direção visual</p>
+          <h1 className="hero__title hero__reveal">Do mármore<br /><em>ao pixel.</em></h1>
           <p className="hero__description hero__reveal">
-            Sou Richard Araújo. Transformo ideias em experiências digitais cuidadosas, úteis e cheias de personalidade.
+            Sou Richard Araújo. Crio experiências digitais que unem direção visual, interação e código — com curiosidade de artesão e vontade de ir além do óbvio.
           </p>
           <div className="hero__actions hero__reveal">
             <a className="hero__primary" href="#projects">Ver projetos <ArrowUpRight size={16} /></a>
