@@ -1,0 +1,10 @@
+import {useRef} from 'react'
+import {ArrowDown,ArrowUpRight} from 'lucide-react'
+import {useGSAP} from '@gsap/react'
+import gsap from 'gsap'
+import BustScene from './BustScene'
+import './Hero.css'
+gsap.registerPlugin(useGSAP)
+export default function Hero(){const ref=useRef(null);useGSAP(()=>{const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce){gsap.set('.hero__reveal',{opacity:1,y:0});return}gsap.fromTo('.hero__reveal',{opacity:0,y:24},{opacity:1,y:0,duration:1,stagger:.12,ease:'power3.out',delay:.15});gsap.fromTo('.hero__seal',{opacity:0,scale:.88,rotation:-10},{opacity:1,scale:1,rotation:0,duration:1.2,ease:'power3.out',delay:.65})},{scope:ref});return <section className="hero" id="hero" ref={ref}><div className="hero__stage"><div className="hero__grid" aria-hidden="true"/><div className="hero__orbit hero__orbit--outer" aria-hidden="true"/><div className="hero__orbit hero__orbit--inner" aria-hidden="true"/><BustScene/>
+<div className="hero__content"><p className="hero__eyebrow hero__reveal"><span>PORTFÓLIO INDEPENDENTE</span><i/><span>MMXXVI</span></p><h1 className="hero__title hero__reveal">Código com<br/><em>alma clássica.</em></h1><p className="hero__description hero__reveal">Sou Richard Araújo, desenvolvedor web. Construo experiências digitais que unem intenção, estética e tecnologia.</p><div className="hero__actions hero__reveal"><a className="hero__primary" href="#projects">EXPLORAR PROJETOS <ArrowUpRight size={15}/></a><a className="hero__secondary" href="#about">CONHECER O CRIADOR</a></div></div>
+<div className="hero__seal" aria-hidden="true"><span>ARS · LOGICA · FORMA</span><b>Ρ</b><span>CREARE EST COGITARE</span></div><div className="hero__coordinates" aria-hidden="true"><span>FIG. 001</span><span>FORMA / MATÉRIA / INTERAÇÃO</span></div><a className="hero__scroll" href="#manifesto"><span>CONTINUE A JORNADA</span><ArrowDown size={14}/></a><span className="hero__side-note" aria-hidden="true">EST. IN CURIOSITATE</span></div></section>}
