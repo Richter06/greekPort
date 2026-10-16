@@ -15,7 +15,6 @@ function BustModel() {
   const rotationRef = useRef(null)
   const { scene } = useGLTF(modelUrl)
 
-  // Normalize the asset to a known size so unusual GLB units cannot overflow the viewport.
   const fitted = useMemo(() => {
     const object = scene.clone(true)
     const bounds = new Box3().setFromObject(object)
@@ -27,18 +26,28 @@ function BustModel() {
     return {
       object,
       scale,
-      position: [-center.x * scale, -center.y * scale, -center.z * scale],
+      position: [
+        -center.x * scale,
+        -center.y * scale,
+        -center.z * scale,
+      ],
     }
   }, [scene])
 
   useFrame(({ clock }) => {
     if (floatRef.current) {
-      floatRef.current.position.y = Math.sin(clock.elapsedTime * 0.55) * 0.018
+      floatRef.current.position.y =
+        Math.sin(clock.elapsedTime * 0.55) * 0.018
     }
   })
 
   useGSAP(() => {
-    if (!rotationRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (
+      !rotationRef.current ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return
+    }
 
     gsap.fromTo(
       rotationRef.current.rotation,
@@ -72,20 +81,57 @@ function BustModel() {
 function Lighting() {
   return (
     <>
-      <ambientLight intensity={0.7} color="#fff8e9" />
-      <directionalLight position={[-4, 5, 4]} intensity={2.3} color="#fff0c9" />
-      <directionalLight position={[4, 1.5, 2]} intensity={0.65} color="#ffffff" />
+      {/* Iluminação ambiente quente */}
+      <ambientLight intensity={0.48} color="#fff5df" />
+
+      {/* Luz principal frontal */}
+      <directionalLight
+        position={[-4, 5, 5]}
+        intensity={2.1}
+        color="#fff0d0"
+      />
+
+      {/* Recorte dourado dramático por trás */}
       <spotLight
-        position={[2.8, 4.5, -3]}
-        intensity={2.5}
-        angle={0.62}
-        penumbra={0.78}
+        position={[3.5, 4.5, -2.5]}
+        target-position={[0, 0.4, 0]}
+        intensity={55}
+        angle={0.72}
+        penumbra={0.8}
+        distance={12}
+        decay={2}
+        color="#ffc44f"
+      />
+
+      {/* Reflexo âmbar lateral */}
+      <pointLight
+        position={[-3, 0.3, -1.5]}
+        intensity={5}
+        color="#d99a2b"
+        distance={7}
+        decay={2}
+      />
+
+      {/* Preenchimento frontal suave */}
+      <pointLight
+        position={[0, 0.5, 3.5]}
+        intensity={0.7}
+        color="#fff3d8"
+        distance={7}
+        decay={2}
+      />
+
+      {/* Destaque dourado vindo de cima */}
+      <spotLight
+        position={[-1, 5, 1]}
+        target-position={[0, 0.5, 0]}
+        intensity={22}
+        angle={0.55}
+        penumbra={0.85}
         distance={10}
         decay={2}
-        color="#d7ad58"
+        color="#ffe0a0"
       />
-      <pointLight position={[-2.8, 0.2, -1.8]} intensity={0.55} color="#c69a45" distance={7} decay={2} />
-      <pointLight position={[0, -1.5, 3]} intensity={0.22} color="#f8dfaa" distance={5} decay={2} />
     </>
   )
 }
@@ -94,13 +140,23 @@ export default function BustScene() {
   return (
     <div className="bust-scene" aria-label="Busto de mármore em 3D">
       <div className="bust-scene__halo" aria-hidden="true" />
+
       <Canvas
         camera={{ position: [0, 0, 4.6], fov: 35, near: 0.1, far: 100 }}
         dpr={[1, 1.35]}
-        gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
-        fallback={<p className="bust-scene__fallback">A escultura 3D não está disponível neste navegador.</p>}
+        gl={{
+          alpha: true,
+          antialias: true,
+          powerPreference: 'high-performance',
+        }}
+        fallback={
+          <p className="bust-scene__fallback">
+            A escultura 3D não está disponível neste navegador.
+          </p>
+        }
       >
         <Lighting />
+
         <Suspense fallback={null}>
           <BustModel />
         </Suspense>
