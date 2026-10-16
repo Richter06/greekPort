@@ -17,15 +17,21 @@ export default function StorySequence() {
     }
 
     const root = ref.current
+    if (!root) return
+
     const heroContent = root.querySelector('.hero__content')
     const heroScroll = root.querySelector('.hero__scroll')
     const paper = root.querySelector('.story-sequence__paper')
     const bust = root.querySelector('.story-sequence__visual .bust-scene')
-    const manifestoTop = root.querySelector('.manifesto__top')
-    const manifestoHeading = root.querySelector('.manifesto__copy .section-heading')
-    const manifestoDetails = Array.from(
-      root.querySelectorAll('.manifesto__bottom > *'),
+    const manifestoHeader = root.querySelector('.manifesto__header')
+    const manifestoOverline = root.querySelector('.manifesto__overline')
+    const manifestoTitleLines = Array.from(
+      root.querySelectorAll('.manifesto__title-line'),
     )
+    const manifestoFooterItems = Array.from(
+      root.querySelectorAll('.manifesto__footer > *'),
+    )
+    const manifestoBottomLine = root.querySelector('.manifesto__bottom-line')
 
     const timeline = gsap.timeline({
       defaults: { ease: 'none' },
@@ -53,32 +59,49 @@ export default function StorySequence() {
         duration: 1.2,
       }, 0.42)
       .to(bust, {
-        opacity: 0.78,
+        opacity: () => window.innerWidth <= 700 ? 0.58 : 0.78,
         x: () => window.innerWidth <= 700 ? 0 : window.innerWidth * 0.018,
         duration: 1.2,
       }, 0.42)
       .fromTo(
-        manifestoTop,
-        { autoAlpha: 0, y: 20 },
-        { autoAlpha: 1, y: 0, duration: 0.32 },
-        0.72,
+        manifestoHeader,
+        { autoAlpha: 0, y: 18 },
+        { autoAlpha: 1, y: 0, duration: 0.3 },
+        0.65,
       )
       .fromTo(
-        manifestoHeading,
-        { autoAlpha: 0, y: 34 },
-        { autoAlpha: 1, y: 0, duration: 0.48 },
-        0.9,
+        manifestoOverline,
+        { autoAlpha: 0, y: 18 },
+        { autoAlpha: 1, y: 0, duration: 0.28 },
+        0.76,
       )
       .fromTo(
-        manifestoDetails,
-        { autoAlpha: 0, y: 22 },
+        manifestoTitleLines,
+        { autoAlpha: 0, y: 30 },
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.38,
-          stagger: 0.1,
+          duration: 0.4,
+          stagger: 0.09,
         },
-        1.22,
+        0.84,
+      )
+      .fromTo(
+        manifestoFooterItems,
+        { autoAlpha: 0, y: 20 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.34,
+          stagger: 0.08,
+        },
+        1.2,
+      )
+      .fromTo(
+        manifestoBottomLine,
+        { autoAlpha: 0, y: 12 },
+        { autoAlpha: 1, y: 0, duration: 0.24 },
+        1.55,
       )
 
     return () => {
