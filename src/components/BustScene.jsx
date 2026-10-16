@@ -10,6 +10,15 @@ import './BustScene.css'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
+const sectionSelectors = [
+  '#hero',
+  '#manifesto',
+  '#projects',
+  '#about',
+  '#contact',
+  '.footer',
+]
+
 function BustModel() {
   const floatRef = useRef(null)
   const rotationRef = useRef(null)
@@ -46,7 +55,10 @@ function BustModel() {
   })
 
   useGSAP(() => {
+    const experience = document.querySelector('#portfolio-experience')
+
     if (
+      !experience ||
       !floatRef.current ||
       !rotationRef.current ||
       prefersReducedMotion
@@ -54,9 +66,39 @@ function BustModel() {
       return
     }
 
+    const sections = sectionSelectors
+      .map((selector) => experience.querySelector(selector))
+      .filter(Boolean)
+
+    if (sections.length !== sectionSelectors.length) return
+
+    const sectionHeights = sections.map((section) =>
+      Math.max(section.offsetHeight, 1),
+    )
+    const totalSectionHeight = sectionHeights.reduce(
+      (total, height) => total + height,
+      0,
+    )
+    const scrollDistance = Math.max(
+      experience.scrollHeight - window.innerHeight,
+      1,
+    )
+    const timelineDuration = scrollDistance / window.innerHeight
+    const durations = sectionHeights.map(
+      (height) => (height / totalSectionHeight) * timelineDuration,
+    )
+    const starts = durations.map((_, index) =>
+      durations.slice(0, index).reduce((total, duration) => total + duration, 0),
+    )
+
+    gsap.set(rotationRef.current.rotation, { x: 0.025, y: -0.16 })
+    gsap.set(floatRef.current.position, { x: 0 })
+    gsap.set(floatRef.current.scale, { x: 1, y: 1, z: 1 })
+
     const timeline = gsap.timeline({
+      defaults: { ease: 'none' },
       scrollTrigger: {
-        trigger: '#story-sequence',
+        trigger: experience,
         start: 'top top',
         end: 'bottom bottom',
         scrub: 0.8,
@@ -64,27 +106,43 @@ function BustModel() {
       },
     })
 
-    timeline
-      .fromTo(
+    const poses = [
+      { rotation: { x: 0.01, y: 0.08 }, x: 0.02, scale: 1 },
+      { rotation: { x: -0.025, y: 0.5 }, x: 0.2, scale: 0.94 },
+      { rotation: { x: 0.045, y: 0.12 }, x: -0.28, scale: 0.84 },
+      { rotation: { x: -0.02, y: -0.45 }, x: 0.28, scale: 0.92 },
+      { rotation: { x: 0.03, y: 0.1 }, x: -0.22, scale: 0.82 },
+      { rotation: { x: -0.01, y: 0.42 }, x: 0.1, scale: 0.7 },
+    ]
+
+    poses.forEach((pose, index) => {
+      timeline.to(
         rotationRef.current.rotation,
-        { y: -0.16, x: 0.025 },
-        { y: 0.5, x: -0.025, duration: 1.8, ease: 'none' },
-        0,
+        {
+          ...pose.rotation,
+          duration: durations[index],
+        },
+        starts[index],
       )
-      .to(
+      timeline.to(
         floatRef.current.position,
         {
-          x: () => window.innerWidth <= 700 ? 0.04 : 0.2,
-          duration: 1.3,
-          ease: 'none',
+          x: pose.x,
+          duration: durations[index],
         },
-        0.32,
+        starts[index],
       )
-      .to(
+      timeline.to(
         floatRef.current.scale,
-        { x: 0.94, y: 0.94, z: 0.94, duration: 1.25, ease: 'none' },
-        0.48,
+        {
+          x: pose.scale,
+          y: pose.scale,
+          z: pose.scale,
+          duration: durations[index],
+        },
+        starts[index],
       )
+    })
 
     return () => {
       timeline.scrollTrigger?.kill()
