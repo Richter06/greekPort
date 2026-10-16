@@ -47,28 +47,28 @@ function BustModel() {
 function Lighting() {
   return (
     <>
-      <ambientLight intensity={0.32} color="#fff8e9" />
+      <ambientLight intensity={0.55} color="#fff8e9" />
       <directionalLight
         position={[-4, 5, 4]}
-        intensity={4.2}
+        intensity={2.8}
         color="#fff0c9"
       />
       <directionalLight
         position={[4, 1.5, 2]}
-        intensity={0.85}
+        intensity={0.55}
         color="#ffffff"
       />
       <spotLight
         position={[2.8, 4.5, -3]}
-        intensity={5.5}
+        intensity={3.1}
         angle={0.62}
         penumbra={0.78}
         distance={10}
         decay={2}
         color="#d7ad58"
       />
-      <pointLight position={[-2.8, 0.2, -1.8]} intensity={2.1} color="#c69a45" distance={7} decay={2} />
-      <pointLight position={[0, -1.5, 3]} intensity={0.28} color="#f8dfaa" distance={5} decay={2} />
+      <pointLight position={[-2.8, 0.2, -1.8]} intensity={0.85} color="#c69a45" distance={7} decay={2} />
+      <pointLight position={[0, -1.5, 3]} intensity={0.18} color="#f8dfaa" distance={5} decay={2} />
     </>
   )
 }
