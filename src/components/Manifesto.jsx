@@ -1,79 +1,66 @@
-import { ArrowDownRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import './Manifesto.css'
 
 export default function Manifesto() {
   return (
     <section className="manifesto section-shell" id="manifesto">
       <div className="manifesto__story-content">
-        <div className="manifesto__header">
+        <header className="manifesto__header">
           <p className="section-kicker manifesto__kicker">
-            Uma ideia simples
+            Princípios de construção
           </p>
-
           <span className="manifesto__folio">
-            PENSAMENTO <span>—</span> 001
+            <span>GREEKPORT</span> / ENSAIO Nº 01
           </span>
-        </div>
+        </header>
 
         <div className="manifesto__composition">
-          <div className="manifesto__index" aria-hidden="true">
-            <span>01</span>
+          <aside className="manifesto__index" aria-hidden="true">
+            <span className="manifesto__index-number">Ι</span>
             <span className="manifesto__index-line" />
-            <span>IDEIA</span>
-          </div>
+            <span className="manifesto__index-label">FORMA</span>
+          </aside>
 
           <div className="manifesto__main">
             <div className="manifesto__title-wrap">
-              <span className="manifesto__overline">
-                FORMA ENCONTRA FUNÇÃO
-              </span>
+              <div className="manifesto__overline">
+                <span className="manifesto__overline-mark" aria-hidden="true">✳</span>
+                <span>ΜΕΤΡΟ · ΑΡΜΟΝΙΑ · ΛΟΓΟΣ</span>
+              </div>
 
               <h2 className="manifesto__title">
-                <span className="manifesto__title-line">
-                  A estética
-                </span>
-
-                <span className="manifesto__title-line manifesto__title-line--accent">
-                  chama.
-                </span>
-
-                <span className="manifesto__title-line manifesto__title-line--last">
-                  A experiência
-                </span>
-
-                <span className="manifesto__title-line manifesto__title-line--accent manifesto__title-line--last">
-                  fica.
-                </span>
+                <span className="manifesto__title-line">A estética</span>
+                <span className="manifesto__title-line manifesto__title-line--accent">abre portas.</span>
+                <span className="manifesto__title-line manifesto__title-line--support">A experiência</span>
+                <span className="manifesto__title-line manifesto__title-line--accent manifesto__title-line--last">faz ficar.</span>
               </h2>
 
-              <span className="manifesto__ornament" aria-hidden="true">
-                <span className="manifesto__ornament-ring" />
-                <span className="manifesto__ornament-core" />
-                <span className="manifesto__ornament-cross manifesto__ornament-cross--horizontal" />
-                <span className="manifesto__ornament-cross manifesto__ornament-cross--vertical" />
-              </span>
+              <div className="manifesto__temple" aria-hidden="true">
+                <span className="manifesto__temple-sun" />
+                <span className="manifesto__temple-arch" />
+                <span className="manifesto__temple-column manifesto__temple-column--left" />
+                <span className="manifesto__temple-column manifesto__temple-column--right" />
+                <span className="manifesto__temple-capital manifesto__temple-capital--left" />
+                <span className="manifesto__temple-capital manifesto__temple-capital--right" />
+                <span className="manifesto__temple-base" />
+                <span className="manifesto__temple-caption">ΑΡΕΤΗ <i>—</i> 001</span>
+              </div>
             </div>
 
             <div className="manifesto__footer">
-              <div className="manifesto__rule" aria-hidden="true">
-                <span />
-              </div>
-
+              <div className="manifesto__rule" aria-hidden="true"><span /></div>
               <p className="manifesto__statement">
-                Um bom site não precisa escolher entre beleza e
-                funcionalidade.
+                Beleza que desperta interesse. Funcionalidade que conquista confiança.
               </p>
-
               <div className="manifesto__detail">
                 <p>
-                  Acredito em experiências digitais nas quais cada
-                  detalhe tem um propósito — da primeira impressão
-                  à última interação.
+                  Cada escolha deve ter um propósito. Da primeira impressão
+                  à última interação, construo experiências digitais que
+                  equilibram clareza, personalidade e cuidado.
                 </p>
-
                 <a className="manifesto__link" href="#projects">
-                  <span>Essa ideia em prática</span>
-                  <ArrowDownRight size={15} strokeWidth={1.5} />
+                  <span>Ver os princípios em prática</span>
+                  <ArrowUpRight size={15} strokeWidth={1.6} />
                 </a>
               </div>
             </div>
@@ -81,11 +68,11 @@ export default function Manifesto() {
         </div>
 
         <div className="manifesto__bottom-line" aria-hidden="true">
-          <span>ARS</span>
+          <span>ΚΑΛΛΟΣ</span>
           <span className="manifesto__bottom-rule" />
-          <span>LOGICA</span>
+          <span>ΛΟΓΟΣ</span>
           <span className="manifesto__bottom-dot">✳</span>
-          <span>DIGITAL</span>
+          <span>ΕΜΠΕΙΡΙΑ</span>
         </div>
       </div>
     </section>
